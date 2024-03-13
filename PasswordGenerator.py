@@ -6,11 +6,14 @@
 import hashlib
 import getpass
 
+def hash_password(password, salt):
+    return hashlib.sha256((password + salt).encode()).hexdigest()
+
 def main():
     password = getpass.getpass("Enter your password: ")
-    salt = "somerandomsalt"  # Change this to a random value
-    hashed_password = hashlib.sha256((password + salt).encode()).hexdigest()
-    print("Hashed password:", hashed_password)
+    salt = "RandomSalt123"  # Replace with your own salt generation method
+    hashed_password = hash_password(password, salt)
+    print("Hashed Password:", hashed_password)
 
 if __name__ == "__main__":
     main()
